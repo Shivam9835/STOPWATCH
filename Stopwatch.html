@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+
+
+  <head>
+
+    <title> STOPWATCH BY PIYUSH RAJ </title>
+
+    <style>
+      *{margin:0px; padding:0px; background-color:black; font-size:80px; text-align:center; color:white;}
+            .stopwatch{margin:0px auto; color:white;}
+            button{background-color:white; color:black; width:70px; height:40px; margin:100px; outline:none;}
+            #buttons{dispaly:flex; margin:40px auto;}
+#minute,#second,#milisecond{font-size:130px; }
+      #x{ margin: 30px 30px; border:10px double white; width:75%; margin:0 auto;}
+      #x,span{font-size:130px;}
+      button:active{background-color:white; color:black; border:1px solid white;}
+#start, #stop, #reset{margin-top:20px;}
+#lap{width:74%; margin-top:40px;}
+#laptime{color:white; font-size:150px;}
+    </style>
+  </head>
+
+
+
+  <body>
+
+    <div class="stopwatch">
+
+      <h1> PIKACHU STOPWATCH </h1>
+
+      <h2> STOP AND WATCH </h2>
+
+      <p id="x">
+        <span id="minute"> 00 </span> :
+        <span id="second"> 00 </span> :
+        <span id="milisecond"> 00 </span>
+      </p>
+      <div id="buttons">
+
+        <button id="start"> START </button>
+
+        <button id="stop"> STOP </button>
+
+        <button id="reset"> RESET </button>
+      </div>
+      <button id="lap"> LAP </button>
+      <p id="laptime"></p>
+    </div>
+  </body>
+  <script>
+    window.onload = function()
+    {
+
+      var second = 00;
+      var milisecond = 00;
+      var minute = 00;
+      var appendminute = document.getElementById("minute");
+      var appendsecond = document.getElementById("second");
+      var appendmilisecond = document.getElementById("milisecond");
+      var start = document.getElementById("start");
+      var stop = document.getElementById("stop");
+      var reset = document.getElementById("reset");
+      var interval;
+      start.onclick = function()
+      {
+        clearInterval(interval);
+        interval = setInterval(starttimer, 10);
+      }
+
+      stop.onclick = function()
+      {
+        clearInterval(interval)
+      }
+
+      reset.onclick = function()
+      {
+        clearInterval(interval);
+        second = "00";
+        milisecond = "00";
+        appendminute.innerHTML = "00";
+        appendsecond.innerHTML = second;
+        appendmilisecond.innerHTML = milisecond;
+        laptime.innerHTML = "";
+      }
+
+      function starttimer()
+      {
+        milisecond++;
+        if (milisecond <= 9)
+        {
+          appendmilisecond.innerHTML = "0" + milisecond;
+        }
+
+        if (milisecond > 9)
+        {
+          appendmilisecond.innerHTML = milisecond;
+        }
+
+        if (milisecond > 99)
+        {       
+          second++;     
+          appendsecond.innerHTML = "0" + second;     
+          milisecond = 0;     
+          appendmilisecond.innerHTML = "0" + 0;   
+        }      
+        if (second > 9)
+        {     
+          appendsecond.innerHTML = second;   
+        }
+        if (second > 59)
+        {
+          minute++;
+          appendminute.innerHTML = "0" + minute;
+          second = 0;
+          appendsecond.innerHTML = "0" + 0;
+        }
+        if (minute > 9)
+        {
+          appendminute.innerHTML = minute;
+
+        }
+        var lap = document.getElementById('lap');
+        var laptime = document.getElementById('laptime');
+        var x = document.getElementById('x');
+        lap.onclick = function()
+        {
+          laptime.innerHTML += x.innerHTML + "<br>";
+        }
+
+      }
+
+    }
+  </script>
+
+
+</html>
